@@ -14,6 +14,7 @@ namespace PropEase.API.DTOs
         public bool Alugado { get; set; }
         public string ProprietarioNome { get; set; } = string.Empty;
         public string ProprietarioTelefone { get; set; } = string.Empty;
+        
     }
 }
 
