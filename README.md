@@ -117,3 +117,6 @@ Aplicação ficará disponível em:
 - Erro "no such table": garanta que as migrações foram aplicadas (o app faz `Database.Migrate()` na inicialização). Se necessário, apague o arquivo `propease.db` e rode `dotnet run` novamente.
 - Connection string: verifique os arquivos `appsettings.json` e `appsettings.Development.json`. O log de inicialização mostra a "Connection String (efetiva)" usada.
 - Porta: configurada em `Properties/launchSettings.json` (http://localhost:5150).
+
+## Próximos passos
+- 

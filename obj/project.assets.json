@@ -4053,11 +4053,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dscw\\PropEase.API\\PropEase.API.csproj",
+      "projectUniqueName": "C:\\Users\\dscw\\OneDrive - GFT Technologies SE\\Documents\\PropEase.API\\PropEase.API.csproj",
       "projectName": "PropEase.API",
-      "projectPath": "C:\\Users\\dscw\\PropEase.API\\PropEase.API.csproj",
+      "projectPath": "C:\\Users\\dscw\\OneDrive - GFT Technologies SE\\Documents\\PropEase.API\\PropEase.API.csproj",
       "packagesPath": "C:\\Users\\dscw\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dscw\\PropEase.API\\obj\\",
+      "outputPath": "C:\\Users\\dscw\\OneDrive - GFT Technologies SE\\Documents\\PropEase.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\dscw\\AppData\\Roaming\\NuGet\\NuGet.Config"
