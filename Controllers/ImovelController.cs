@@ -28,8 +28,21 @@ namespace PropEase.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var imovel = await _service.GetByIdAsync(id);
-            return imovel is null ? NotFound() : Ok(imovel);
+            try
+            {
+                if (id <= 0)
+                    return BadRequest("ID inválido. Deve ser maior que zero.");
+
+                var imovel = await _service.GetByIdAsync(id);
+                if (imovel is null)
+                    return NotFound("Imóvel não encontrado.");
+
+                return Ok(new { Mensagem = "Imóvel encontrado.", Dados = imovel });
+            }
+            catch (FormatException)
+            {
+                return BadRequest("ID inválido. Deve ser um número inteiro.");
+            }
         }
 
         [HttpPost]
@@ -75,6 +88,7 @@ namespace PropEase.API.Controllers
         [HttpPut("disponibilizar/{id}")]
         public async Task<IActionResult> Disponibilizar(int id)
         {
+            
             var result = await _service.DisponibilizarAsync(id);
             return result ? Ok(new { Mensagem = "Imóvel agora está disponível." }) : NotFound("Imóvel não encontrado.");
         }
