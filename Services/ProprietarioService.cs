@@ -1,38 +1,38 @@
 using Microsoft.EntityFrameworkCore;
-using PropEase.API.Data;
 using PropEase.API.Models;
+using PropEase.API.Repositories;
 
 namespace PropEase.API.Services
 {
     public class ProprietarioService
     {
-        private readonly AppDbContext _db;
-        public ProprietarioService(AppDbContext db) { _db = db; }
+        private readonly IUnitOfWork _uow;
+        public ProprietarioService(IUnitOfWork uow) { _uow = uow; }
 
-        public async Task<List<Proprietario>> GetAllAsync() => await _db.Proprietarios.ToListAsync();
-        public async Task<Proprietario?> GetByIdAsync(int id) => await _db.Proprietarios.FindAsync(id);
+        public async Task<List<Proprietario>> GetAllAsync() => await _uow.Repository<Proprietario>().Query().ToListAsync();
+        public async Task<Proprietario?> GetByIdAsync(int id) => await _uow.Repository<Proprietario>().GetByIdAsync(id);
         public async Task<Proprietario> AddAsync(Proprietario p)
         {
-            _db.Proprietarios.Add(p);
-            await _db.SaveChangesAsync();
+            await _uow.Repository<Proprietario>().AddAsync(p);
+            await _uow.SaveChangesAsync();
             return p;
         }
         public async Task<bool> UpdateAsync(int id, Proprietario p)
         {
-            var existing = await _db.Proprietarios.FindAsync(id);
+            var existing = await _uow.Repository<Proprietario>().GetByIdAsync(id);
             if (existing is null) return false;
             existing.Nome = p.Nome;
             existing.Telefone = p.Telefone;
             existing.CPF = p.CPF;
-            await _db.SaveChangesAsync();
+            await _uow.SaveChangesAsync();
             return true;
         }
         public async Task<bool> DeleteAsync(int id)
         {
-            var p = await _db.Proprietarios.FindAsync(id);
+            var p = await _uow.Repository<Proprietario>().GetByIdAsync(id);
             if (p is null) return false;
-            _db.Proprietarios.Remove(p);
-            await _db.SaveChangesAsync();
+            _uow.Repository<Proprietario>().Remove(p);
+            await _uow.SaveChangesAsync();
             return true;
         }
     }

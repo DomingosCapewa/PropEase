@@ -2,6 +2,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using PropEase.API.Data;
 using PropEase.API.Services;
+using PropEase.API.Repositories;
+using System.Text.Json.Serialization;
+using AutoMapper;
+using PropEase.API.Mapping;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +24,12 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped<ImovelService>();
 builder.Services.AddScoped<ProprietarioService>();
-builder.Services.AddControllers();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+builder.Services.AddControllers().AddJsonOptions(opt =>
+{
+  opt.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

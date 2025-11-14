@@ -39,5 +39,12 @@ namespace PropEase.API.Models
         {
             alugado = false;
         }
+        public void Apply(int proprietarioId, string endereco, int numero, bool alugado)
+        {
+            ProprietarioId = proprietarioId;
+            Endereco = endereco;
+            Numero = numero;
+            if (alugado) Alugar(); else Disponibilizar();
+        }
     }
 }
