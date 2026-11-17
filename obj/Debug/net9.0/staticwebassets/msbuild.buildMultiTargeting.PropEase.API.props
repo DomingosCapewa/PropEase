@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\PropEase.API.props" />
-</Project>
